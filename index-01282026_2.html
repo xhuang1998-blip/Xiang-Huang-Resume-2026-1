@@ -1,0 +1,250 @@
+import React from 'react';
+import { Mail, Phone, MapPin, Linkedin, Printer, Globe, GraduationCap, Briefcase, Award, FolderKanban } from 'lucide-react';
+
+/**
+ * RESUME DATA OBJECT
+ * Normalized structure: Header, Summary, Skills, Experience, Projects, Education.
+ */
+const RESUME_DATA = {
+  profile: {
+    name: "Xiang (Sharon) Huang",
+    title: "Systems Analyst / Engineer",
+    email: "xhuang1998@gmail.com",
+    phone: "617-968-0034",
+    location: "Lexington, MA",
+    linkedin: "https://www.linkedin.com/in/sharon-huang-mba-a730758/",
+    summary: [
+      "Naturally empathetic and care deeply, genuinely, and passionately about solving problems for stakeholders. Not afraid to dive into unfamiliar content and quickly get up to speed. Advocate and champion for client needs.",
+      "A well-rounded professional in a financial service software company with expertise in global portfolio management, front office support, fixed income, ETF basket support, trade support, portfolio admin, portfolio construction, market data, pricing, corporate actions, batch cycle, and operational compliance."
+    ]
+  },
+  skills: [
+    "Alpha Front Office Support", "SaaS Onboarding", "Disaster Recovery", 
+    "Business Continuity", "SQL & Azure", "Charles River IMS", 
+    "MarkIt EDM", "Agile Methodology", "Team Leadership", "Documentation & Reporting"
+  ],
+  experience: [
+    {
+      company: "State Street Corporation",
+      role: "Alpha Front Office Support",
+      location: "Boston, MA",
+      period: "11/2021 – Present",
+      bullets: [
+        "Joined the Alpha support team in the industry's first Alpha front-to-back solution for SSGA passive fixed income managers.",
+        "Receive and respond to client and business user inquiries and issues related to the Alpha platform.",
+        "Create, document, and track the status of requests through closure in a centralized workflow tool.",
+        "Proactively communicate accurate and timely information to stakeholders about open service requests.",
+        "Partner with clients to resolve production issues with clearly identified short- and long-term solutions.",
+        "Perform operational activities (security/account set-up, trade blotter monitoring) and keep current with product fixes."
+      ]
+    },
+    {
+      company: "Charles River / State Street",
+      role: "SaaS Onboarding Engineer / System Analyst",
+      location: "Boston, MA",
+      period: "08/2015 – 07/2021",
+      bullets: [
+        "Onboarded on-premise clients to CRD SaaS environment and triaged support issues.",
+        "Provided support and documentation across functional groups regarding system availability.",
+        "Performed version upgrades and business continuity/disaster recovery assistance.",
+        "Worked with colleagues to smoothly transition new clients to production operations.",
+        "Participated in ongoing refinement and process improvement for services."
+      ]
+    },
+    {
+      company: "John Hancock / John Hancock Investments",
+      role: "System / Operations Analyst",
+      location: "Boston, MA",
+      period: "08/2011 – 08/2015",
+      bullets: [
+        "Supported vendor applications (Charles River for Wealth compliance, accounts payable, fair value).",
+        "Planned and implemented data feed and data conversion projects.",
+        "Monitored daily data feeds and resolved logging issues.",
+        "Implemented new data feeds including system data setup and data quality review.",
+        "Participated in upgrading existing applications and building new ones like MarkIt EDM."
+      ]
+    },
+    {
+      company: "Advent Market Data / Advent Software, Inc.",
+      role: "Data Support Team Lead",
+      location: "Boston, MA",
+      period: "06/2004 – 12/2010",
+      bullets: [
+        "Processed timely corporate actions in the Advent system across different accounting platforms (Axys, APX, Geneva).",
+        "Provided solutions to clients via phone/email and managed ongoing service renewals.",
+        "Assisted in software implementation by researching and addressing QA/development issues.",
+        "Delivered internal training and created Knowledge Base documents."
+      ]
+    },
+    {
+      company: "State Street Corporation / Liberty Bank",
+      role: "Pricing Analyst / Staff Accountant",
+      location: "Quincy/Boston, MA",
+      period: "Earlier Career",
+      bullets: [
+        "Pricing Analyst at Mutual Fund Group, State Street Corporation.",
+        "Staff Accountant at Liberty Bank & Trust Company."
+      ]
+    }
+  ],
+  projects: [
+    "[Gemini Master Class 2026]"
+  ],
+  education: [
+    {
+      degree: "Master of Business Administration",
+      school: "Eastern New Mexico University, Portales, NM",
+      gpa: "3.91/4.00"
+    },
+    {
+      degree: "Bachelor of English",
+      school: "Southeast University, Nanjing, China",
+      gpa: "3.89/4.00"
+    }
+  ]
+};
+
+const SectionHeader = ({ icon: Icon, title }) => (
+  <div className="flex items-center gap-3 border-b-2 border-slate-100 pb-2 mb-4 mt-8">
+    <Icon className="w-5 h-5 text-slate-500" />
+    <h3 className="text-lg font-bold text-slate-900 uppercase tracking-wider">
+      {title}
+    </h3>
+  </div>
+);
+
+export default function App() {
+  const handlePrint = () => {
+    window.print();
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-50 py-4 md:py-12 px-4 print:bg-white print:p-0">
+      
+      <div className="max-w-4xl mx-auto mb-6 flex justify-end items-center print:hidden">
+        <button 
+          onClick={handlePrint}
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-md transition"
+        >
+          <Printer className="w-4 h-4" /> Save as PDF
+        </button>
+      </div>
+
+      <div className="max-w-4xl mx-auto bg-white shadow-2xl rounded-xl overflow-hidden print:shadow-none print:rounded-none">
+        
+        {/* SECTION: Header */}
+        <header className="bg-slate-900 text-white p-8 md:p-12">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-2">
+            {RESUME_DATA.profile.name}
+          </h1>
+          <h2 className="text-xl md:text-2xl text-indigo-400 font-medium mb-8">
+            {RESUME_DATA.profile.title}
+          </h2>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm text-slate-300">
+            <div className="flex items-center gap-2">
+              <Mail className="w-4 h-4 text-indigo-400" />
+              <a href={`mailto:${RESUME_DATA.profile.email}`} className="hover:text-white transition">{RESUME_DATA.profile.email}</a>
+            </div>
+            <div className="flex items-center gap-2">
+              <Phone className="w-4 h-4 text-indigo-400" />
+              <span>{RESUME_DATA.profile.phone}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-indigo-400" />
+              <span>{RESUME_DATA.profile.location}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Linkedin className="w-4 h-4 text-indigo-400" />
+              <a href={RESUME_DATA.profile.linkedin} target="_blank" rel="noreferrer" className="hover:text-white transition">LinkedIn</a>
+            </div>
+          </div>
+        </header>
+
+        <div className="p-8 md:p-12">
+          
+          {/* SECTION: Professional Summary */}
+          <section>
+            <SectionHeader icon={Globe} title="Professional Summary" />
+            <div className="space-y-4 text-slate-700 leading-relaxed">
+              {RESUME_DATA.profile.summary.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+          </section>
+
+          {/* SECTION: Skills */}
+          <section>
+            <SectionHeader icon={Award} title="Skills" />
+            <div className="flex flex-wrap gap-2">
+              {RESUME_DATA.skills.map((skill, i) => (
+                <span key={i} className="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs font-semibold uppercase tracking-wider">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </section>
+
+          {/* SECTION: Professional Experience */}
+          <section>
+            <SectionHeader icon={Briefcase} title="Professional Experience" />
+            <div className="space-y-8">
+              {RESUME_DATA.experience.map((job, i) => (
+                <div key={i} className="relative">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
+                    <h4 className="text-xl font-bold text-slate-800">{job.company}</h4>
+                    <span className="text-sm font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">{job.period}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-600 font-medium mb-3 italic">
+                    <span>{job.role}</span>
+                    <span className="text-slate-300">|</span>
+                    <span>{job.location}</span>
+                  </div>
+                  <ul className="list-disc list-outside ml-5 text-slate-700 space-y-2">
+                    {job.bullets.map((bullet, j) => (
+                      <li key={j} className="pl-1">{bullet}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* SECTION: Projects & Research */}
+          <section>
+            <SectionHeader icon={FolderKanban} title="Projects & Research" />
+            <div className="space-y-3">
+              {RESUME_DATA.projects.map((project, i) => (
+                <div key={i} className="text-slate-700 font-medium flex items-start gap-2">
+                  <span className="text-indigo-600 mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-600 shrink-0"></span>
+                  {project}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* SECTION: Education */}
+          <section>
+            <SectionHeader icon={GraduationCap} title="Education" />
+            <div className="grid md:grid-cols-2 gap-6">
+              {RESUME_DATA.education.map((edu, i) => (
+                <div key={i} className="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                  <h4 className="font-bold text-slate-800">{edu.degree}</h4>
+                  <div className="text-slate-600 text-sm mt-1">{edu.school}</div>
+                  <div className="text-indigo-600 font-bold text-xs mt-2 uppercase">GPA: {edu.gpa}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+        </div>
+
+        <footer className="bg-slate-50 p-6 text-center border-t border-slate-100 print:hidden">
+          <p className="text-slate-400 text-xs">
+            © {new Date().getFullYear()} {RESUME_DATA.profile.name}
+          </p>
+        </footer>
+      </div>
+    </div>
+  );
+}
